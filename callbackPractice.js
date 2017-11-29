@@ -87,7 +87,15 @@ contains(names, 'Colt', function(result){
 // Remove any duplicate values from the array, and invoke the callback with the modified array as an argument.
 
   function uniq(array,cb){
-   
+    array.sort();
+    for(var i =0;i<array.length;i++){
+      if(array[i]===array[i+1]){
+        array.splice(i,1);
+        i--;
+      }
+    }
+    cb(array)
+    return array;
   }
 
 
@@ -100,7 +108,9 @@ uniq(names, function(uniqArr){
 // 6. Write a function called each that takes in an array of names and a callback function. For each name in the array, invoke the callback and pass in the name and the name's index as arguments.
 
     function each(arr,cb){
-      
+      for(var i =0;i<arr.length;i++){
+        arr[cb(name[i],name.index(i))];
+      }
     }
     
 
